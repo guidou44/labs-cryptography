@@ -1,0 +1,60 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/cygdrive/d/Guillaume/Desktop/Internet Explorer/GLO-3100/exercisses/EX1/AffineCipher.h
+string
+-
+Cipher.h
+/cygdrive/d/Guillaume/Desktop/Internet Explorer/GLO-3100/exercisses/EX1/Cipher.h
+
+/cygdrive/d/Guillaume/Desktop/Internet Explorer/GLO-3100/exercisses/EX1/Cipher.h
+map
+-
+
+/cygdrive/d/Guillaume/Desktop/Internet Explorer/GLO-3100/exercisses/EX1/HillCipher.cpp
+iostream
+-
+HillCipher.h
+/cygdrive/d/Guillaume/Desktop/Internet Explorer/GLO-3100/exercisses/EX1/HillCipher.h
+MatrixUtil.h
+/cygdrive/d/Guillaume/Desktop/Internet Explorer/GLO-3100/exercisses/EX1/MatrixUtil.h
+
+/cygdrive/d/Guillaume/Desktop/Internet Explorer/GLO-3100/exercisses/EX1/HillCipher.h
+vector
+-
+Cipher.h
+/cygdrive/d/Guillaume/Desktop/Internet Explorer/GLO-3100/exercisses/EX1/Cipher.h
+
+/cygdrive/d/Guillaume/Desktop/Internet Explorer/GLO-3100/exercisses/EX1/MatrixUtil.h
+
+/cygdrive/d/Guillaume/Desktop/Internet Explorer/GLO-3100/exercisses/EX1/PermutationCipher.h
+Cipher.h
+/cygdrive/d/Guillaume/Desktop/Internet Explorer/GLO-3100/exercisses/EX1/Cipher.h
+
+/cygdrive/d/Guillaume/Desktop/Internet Explorer/GLO-3100/exercisses/EX1/PolybeCipher.h
+string
+-
+
+/cygdrive/d/Guillaume/Desktop/Internet Explorer/GLO-3100/exercisses/EX1/SubstitutionCipher.h
+Cipher.h
+/cygdrive/d/Guillaume/Desktop/Internet Explorer/GLO-3100/exercisses/EX1/Cipher.h
+
+/cygdrive/d/Guillaume/Desktop/Internet Explorer/GLO-3100/exercisses/EX1/main.cpp
+iostream
+-
+AffineCipher.h
+/cygdrive/d/Guillaume/Desktop/Internet Explorer/GLO-3100/exercisses/EX1/AffineCipher.h
+SubstitutionCipher.h
+/cygdrive/d/Guillaume/Desktop/Internet Explorer/GLO-3100/exercisses/EX1/SubstitutionCipher.h
+PolybeCipher.h
+/cygdrive/d/Guillaume/Desktop/Internet Explorer/GLO-3100/exercisses/EX1/PolybeCipher.h
+PermutationCipher.h
+/cygdrive/d/Guillaume/Desktop/Internet Explorer/GLO-3100/exercisses/EX1/PermutationCipher.h
+HillCipher.h
+/cygdrive/d/Guillaume/Desktop/Internet Explorer/GLO-3100/exercisses/EX1/HillCipher.h
+
