@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.15)
-project(EX1)
+project(Cryptography)
 
 set(CMAKE_CXX_STANDARD 14)
+include_directories(src)
+add_subdirectory(src)
+add_subdirectory(test)
+add_subdirectory(lib/googletest-master)
 
-add_executable(EX1 main.cpp AffineCipher.cpp AffineCipher.h Cipher.cpp Cipher.h SubstitutionCipher.cpp SubstitutionCipher.h MapUtil.h PolybeCipher.cpp PolybeCipher.h PermutationCipher.cpp PermutationCipher.h HillCipher.cpp HillCipher.h MatrixUtil.h)
