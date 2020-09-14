@@ -1,3 +1,5 @@
+#include <utility>
+
 //
 // Created by Proprio on 2020-09-13.
 //
@@ -8,112 +10,67 @@
 
 class MatrixUtil {
 public:
-    static bool inverse(int A[N][N], float inverse[N][N]);
+    static std::vector<std::vector<int>> inverse2x2ModN(std::vector<std::vector<int>>& matrix, int moduloN);
+    static std::vector<int> multiply2x2withArray(std::vector<std::vector<int>>& matrix, std::vector<int>& array);
 private:
-    static void getCofactor(int A[N][N], int temp[N][N], int p, int q, int n);
-    static int determinant(int A[N][N], int n);
-    static void adjoint(int A[N][N],int adj[N][N]);
+    static int determinant2x2(std::vector<std::vector<int>>& matrix);
+    static std::vector<std::vector<int>> adjoint2x2(std::vector<std::vector<int>>& matrix);
+    static int inverseInModulo(int inverseOf, int moduloN);
 
 };
 
-void MatrixUtil::getCofactor(int A[N][N], int temp[N][N], int p, int q, int n)
+
+int MatrixUtil::determinant2x2(std::vector<std::vector<int>>& matrix)
 {
-    int i = 0, j = 0;
+    int det= 0;
+    if (matrix.size() == 1 && matrix[0].size() == 1)
+        return matrix[0][0];
 
-    // Looping for each element of the matrix
-    for (int row = 0; row < n; row++)
-    {
-        for (int col = 0; col < n; col++)
-        {
-            //  Copying into temporary matrix only those element
-            //  which are not in given row and column
-            if (row != p && col != q)
-            {
-                temp[i][j++] = A[row][col];
+    det = matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
 
-                // Row is filled, so increase row index and
-                // reset col index
-                if (j == n - 1)
-                {
-                    j = 0;
-                    i++;
-                }
-            }
+    return det;
+}
+
+std::vector<std::vector<int>> MatrixUtil::adjoint2x2(std::vector<std::vector<int>>& matrix) {
+    std::vector<std::vector<int>> adjoint(N);
+    adjoint[0] = std::vector<int>(N);
+    adjoint[1] = std::vector<int>(N);
+    adjoint[0][0] = matrix[1][1];
+    adjoint[1][1] = matrix[0][0];
+    adjoint[0][1] = -1*matrix[0][1];
+    adjoint[1][0] = -1*matrix[1][0];
+    return adjoint;
+}
+
+std::vector<std::vector<int>> MatrixUtil::inverse2x2ModN(std::vector<std::vector<int>>& matrix, int moduloN) {
+    int det = determinant2x2(matrix);
+    std::vector<std::vector<int>> adjoint = adjoint2x2(matrix);
+    int detModuloN = inverseInModulo(det, moduloN);
+    for (std::vector<int>& row : adjoint) {
+        for (int & i : row) {
+            i = (detModuloN * i) % 26;
         }
     }
+    return adjoint;
 }
 
-int MatrixUtil::determinant(int A[N][N], int n)
-{
-    int D = 0; // Initialize result
-
-    //  Base case : if matrix contains single element
-    if (n == 1)
-        return A[0][0];
-
-    int temp[N][N]; // To store cofactors
-
-    int sign = 1;  // To store sign multiplier
-
-    // Iterate for each element of first row
-    for (int f = 0; f < n; f++)
-    {
-        // Getting Cofactor of A[0][f]
-        getCofactor(A, temp, 0, f, n);
-        D += sign * A[0][f] * determinant(temp, n - 1);
-
-        // terms are to be added with alternate sign
-        sign = -sign;
-    }
-
-    return D;
+int MatrixUtil::inverseInModulo(int inverseOf, int moduloN) {
+    inverseOf = inverseOf % moduloN;
+    for (int x=1; x < moduloN; x++)
+        if ((inverseOf * x) % moduloN == 1)
+            return x;
 }
 
-// Function to get adjoint of A[N][N] in adj[N][N].
-void MatrixUtil::adjoint(int A[N][N],int adj[N][N])
-{
-    if (N == 1)
-    {
-        adj[0][0] = 1;
-        return;
-    }
+std::vector<int>
+MatrixUtil::multiply2x2withArray(std::vector<std::vector<int>> &matrix, std::vector<int>& array) {
+    if (array.size() != N || matrix.size() != N || matrix[0].size() != N || matrix[1].size() != N)
+        throw std::logic_error("invalid matrix or array size");
 
-    // temp is used to store cofactors of A[][]
-    int sign = 1, temp[N][N];
+    std::vector<int> result(N);
 
-    for (int i=0; i<N; i++)
-    {
-        for (int j=0; j<N; j++)
-        {
-            // Get cofactor of A[i][j]
-            getCofactor(A, temp, i, j, N);
-
-            // sign of adj[j][i] positive if sum of row
-            // and column indexes is even.
-            sign = ((i+j)%2==0)? 1: -1;
-
-            // Interchanging rows and columns to get the
-            // transpose of the cofactor matrix
-            adj[j][i] = (sign)*(determinant(temp, N-1));
-        }
-    }
-}
-
-bool MatrixUtil::inverse(int A[N][N], float inverse[N][N])
-{
-    // Find determinant of A[][]
-    int det = determinant(A, N);
-
-    // Find adjoint
-    int adj[N][N];
-    adjoint(A, adj);
-
-    // Find Inverse using formula "inverse(A) = adj(A)/det(A)"
-    for (int i=0; i<N; i++)
-        for (int j=0; j<N; j++)
-            inverse[i][j] = adj[i][j]/float(det);
-
-    return true;
+    result[0] = matrix[0][0]*array[0] + matrix[0][1]*array[1];
+    result[1] = matrix[1][0]*array[0] + matrix[1][1]*array[1];
+    return result;
 }
 
 

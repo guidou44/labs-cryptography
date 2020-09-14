@@ -36,8 +36,9 @@ int main() {
     std::cout << encrypted4 << " decrypted to : "<< permutationCipher.decrypt(encrypted4) <<std::endl;
     std::cout << clear4 << " encrypted to : "<< permutationCipher.encrypt(clear4) <<std::endl;
 
-    HillCipher hillCipher;
-    std::string encrypted5 = "33";
+    std::vector<std::vector<int>> key = {std::vector<int>(2), std::vector<int>(2)};
+    HillCipher hillCipher(key);
+    std::string encrypted5 = "YUNCNAQBEVTE";
     std::string clear5 = "33";
     std::cout << "--------- HILL CIPHER -----------" << std::endl;
     std::cout << encrypted5 << " decrypted to : "<< hillCipher.decrypt(encrypted5) <<std::endl;

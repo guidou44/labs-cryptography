@@ -16,21 +16,11 @@ Cipher.h
 map
 -
 
-/cygdrive/d/Guillaume/Desktop/Internet Explorer/GLO-3100/exercisses/EX1/HillCipher.cpp
-iostream
--
-HillCipher.h
-/cygdrive/d/Guillaume/Desktop/Internet Explorer/GLO-3100/exercisses/EX1/HillCipher.h
-MatrixUtil.h
-/cygdrive/d/Guillaume/Desktop/Internet Explorer/GLO-3100/exercisses/EX1/MatrixUtil.h
-
 /cygdrive/d/Guillaume/Desktop/Internet Explorer/GLO-3100/exercisses/EX1/HillCipher.h
 vector
 -
 Cipher.h
 /cygdrive/d/Guillaume/Desktop/Internet Explorer/GLO-3100/exercisses/EX1/Cipher.h
-
-/cygdrive/d/Guillaume/Desktop/Internet Explorer/GLO-3100/exercisses/EX1/MatrixUtil.h
 
 /cygdrive/d/Guillaume/Desktop/Internet Explorer/GLO-3100/exercisses/EX1/PermutationCipher.h
 Cipher.h

@@ -12,11 +12,12 @@
 class HillCipher : protected Cipher {
 
 public:
+    HillCipher(std::vector<std::vector<int>>  key);
     std::string encrypt(const std::string& clearMessage);
     std::string decrypt(const std::string& encrypted);
 
 private:
-    int matrixKey[N][N];
+    std::vector<std::vector<int>> matrixKey;
 };
 
 
