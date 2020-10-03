@@ -39,7 +39,7 @@ protected:
             {'Z', 25},
     };
 
-    int firstMinusLast(int a, int b);
+    int firstMinusLast(int a, int b) const;
 
     const int ALPHABET_NUMBER = 26;
 };

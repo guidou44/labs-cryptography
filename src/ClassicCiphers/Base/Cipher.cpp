@@ -4,7 +4,7 @@
 
 #include "Cipher.h"
 
-int Cipher::firstMinusLast(int a, int b) {
+int Cipher::firstMinusLast(int a, int b) const {
 
     int temp = a - b;
     if (temp >= 0)

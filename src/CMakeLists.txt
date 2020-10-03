@@ -18,6 +18,8 @@ set(SOURCE_FILES
         ClassicCiphers/Base/Cipher.cpp
         ClassicCiphers/AffineCipher.h
         ClassicCiphers/AffineCipher.cpp
+        SymetricCiphers/FreidmanTester.cpp
+        SymetricCiphers/FreidmanTester.h
         main.cpp)
 
 

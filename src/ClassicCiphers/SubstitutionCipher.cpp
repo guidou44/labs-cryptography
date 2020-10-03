@@ -2,6 +2,7 @@
 // Created by Proprio on 2020-09-13.
 //
 
+#include <string>
 #include "SubstitutionCipher.h"
 #include "../Utils/MapUtil.h"
 

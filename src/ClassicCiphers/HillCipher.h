@@ -18,7 +18,7 @@ public:
 
 private:
     std::vector<std::vector<int>> matrixKey;
-    int customMod(int x, int m);
+    static int customMod(int x, int m);
 };
 
 

@@ -1,12 +1,42 @@
 #include <iostream>
+#include <SymetricCiphers/FreidmanTester.h>
 #include "ClassicCiphers/AffineCipher.h"
 #include "ClassicCiphers/SubstitutionCipher.h"
 #include "ClassicCiphers/PolybeCipher.h"
 #include "ClassicCiphers/PermutationCipher.h"
 #include "ClassicCiphers/HillCipher.h"
 
+using namespace std;
+
 int main() {
 
+    //runClassicCiphers();
+
+    std::string encryptedVigenere = "JEXCGQDUILIXXDIMXVNGXIBVPGLSMIUVVLZHPCQINXTOGFPWXMIFTXDVRWMCEKMIIAWZGBDWIYIJ"
+                                    "MSRVWMJJRFRPZVIZRAJVSZRUMCXEJIMQPKMIIGPCPYYTARMHOIMKMHOSJEMHOIACMADFAVXYSX"
+                                    "RRPFZHRZTBZVIVBNYIRICJOMDEMMOLTIIPZVHVMHJXWVVQJVSJQIQMCXJLJQIYIOIMCKIFGMVZFFZ"
+                                    "GXGLYMXTOXVVGZKSJGEXEXYSXPTMJCIGZWUKEXISZVPVFVCOLBJXBVXRIIUOIIYIYIGGPTNDSCRRX"
+                                    "OLTIIPZVHZRAYIRICJOMDEXBZHTKECGISFTYMEIZSHJJPTMJCIGZWWJRIISFGISSSNCFNKLYVPVFVCO"
+                                    "LBRRXDRTRGBDRHKEHXIQPEEZCIYMMDWPJIWMIIZHYVPAPOHJACFRFTXDKLYXSBDYHDGPEXMPWJ"
+                                    "RPFTEHYSLOWIIMHBSUTLUMERKILNAWZGBDWCVIXZHIFHYXVNGXNCIRZTBZVIVBNVGGPTNJWNJXY"
+                                    "HMHKLYJVSVVYYPXJXIAIAVQYIXHFJZDRXKIJJWHZFFZTARMHOIMKWZDRXKIJJWHZFFZGNGLYMXT"
+                                    "OXMAMCZXYKSHJMVGIZVCMVRSKLYZRRICJOMDEEHYHTTVSKXXFRUGKDIMNCQHNLCXLRFVLZWEF"
+                                    "RXOSTRGBFINBISNEGVMGKSGKEHOEHTMJCIGJACOLDLXPVVXRFFZOTPWWVRQVXLDZXRPFTFGFOYI"
+                                    "AXKLIIPNKLYFRDNPYYKTFJNCIRZTBZVJJIXVRSRVYOLTIIZJVTLWYGIHJSLZZTEGIPRIVVJMSSLGNDZT"
+                                    "WSLHSHKTOMTDJIMCMHKSLDGPCPSXMEYILNATIIIAXTEYMZHSZVYXXAPJIMICTVSKXXFRIMHTTVSK"
+                                    "XXFRQDXWFYNVHSZXCJRPCTLJGTUYLZWHLGBVWPLXBZRIZGUOMDESLDRIVKLDXNTLYXOH";
+
+    FreidmanTester freidmanTester;
+    map<char, int> frequencyMap = freidmanTester.getCharFrequency(encryptedVigenere);
+
+   for (auto & it : frequencyMap) {
+       cout << /*it.first << "  " <<*/ it.second << endl;
+   }
+
+    return 0;
+}
+
+void runClassicCiphers() {
     AffineCipher affine;
     std::string encrypted = "WNIIR PRAIK";
     std::string clear = "HELLO WORLD";
@@ -43,7 +73,4 @@ int main() {
     std::cout << "--------- HILL CIPHER -----------" << std::endl;
     std::cout << encrypted5 << " decrypted to : "<< hillCipher.decrypt(encrypted5) <<std::endl;
     std::cout << clear5 << " encrypted to : "<< hillCipher.encrypt(clear5) <<std::endl;
-
-
-    return 0;
 }

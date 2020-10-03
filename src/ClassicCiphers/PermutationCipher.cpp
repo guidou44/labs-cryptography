@@ -76,7 +76,7 @@ std::string PermutationCipher::decrypt(const std::string &encrypted) {
     return clearMessage;
 }
 
-std::string PermutationCipher::getNextSubStr(int &lastIndex, const std::string& word) {
+std::string PermutationCipher::getNextSubStr(int &lastIndex, const std::string& word) const {
     string currentSubString;
     if (lastIndex + keyMaxValue < word.size()) {
         currentSubString = word.substr(lastIndex, keyMaxValue);

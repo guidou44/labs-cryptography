@@ -17,7 +17,7 @@ public:
 
 private:
     static int pgcd(int a, int b);
-    int eulerFunction(int n);
+    static int eulerFunction(int n);
 };
 
 

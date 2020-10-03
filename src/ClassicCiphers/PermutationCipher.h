@@ -11,16 +11,16 @@
 class PermutationCipher : protected Cipher {
 
 public:
-    PermutationCipher(const std::string& key);
+    explicit PermutationCipher(const std::string& key);
     std::string encrypt(const std::string& clearMessage);
     std::string decrypt(const std::string& encrypted);
     void setKey(const std::string& key);
 
 private:
     void setPermutationKey(const std::string& key);
-    std::string getNextSubStr(int& lastIndex, const std::string& word);
+    std::string getNextSubStr(int& lastIndex, const std::string& word) const;
     std::map<int, int> permutationkey;
-    int keyMaxValue;
+    int keyMaxValue{};
 };
 
 
