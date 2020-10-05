@@ -27,12 +27,20 @@ int main() {
                                     "XXFRQDXWFYNVHSZXCJRPCTLJGTUYLZWHLGBVWPLXBZRIZGUOMDESLDRIVKLDXNTLYXOH";
 
     FreidmanTester freidmanTester;
-    map<char, int> frequencyMap = freidmanTester.getCharFrequency(encryptedVigenere);
 
-   for (auto & it : frequencyMap) {
-       cout << /*it.first << "  " <<*/ it.second << endl;
-   }
-
+    freidmanTester.printAllCoincidenceIndexesForBlocksOfSize(encryptedVigenere, 1);
+    freidmanTester.printAllCoincidenceIndexesForBlocksOfSize(encryptedVigenere, 2);
+    freidmanTester.printAllCoincidenceIndexesForBlocksOfSize(encryptedVigenere, 3);
+    freidmanTester.printAllCoincidenceIndexesForBlocksOfSize(encryptedVigenere, 4);
+    freidmanTester.printAllCoincidenceIndexesForBlocksOfSize(encryptedVigenere, 5);
+    freidmanTester.printAllCoincidenceIndexesForBlocksOfSize(encryptedVigenere, 6);
+    freidmanTester.printAllCoincidenceIndexesForBlocksOfSize(encryptedVigenere, 7);
+    freidmanTester.printAllCoincidenceIndexesForBlocksOfSize(encryptedVigenere, 8);
+    freidmanTester.printAllCoincidenceIndexesForBlocksOfSize(encryptedVigenere, 9);
+    cout << "-------------"<< endl;
+    freidmanTester.printLetterFrequenciesEnglish();
+    FreidmanTester::printAllStringBlockForSize(encryptedVigenere, 6);
+    freidmanTester.printMaxLetterFrequencyInAllStringBlockFor(encryptedVigenere, 6);
     return 0;
 }
 
