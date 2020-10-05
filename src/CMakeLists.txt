@@ -4,6 +4,7 @@ set(BINARY ${CMAKE_PROJECT_NAME})
 
 set(SOURCE_FILES
         Utils/MatrixUtil.h
+        Utils/BinaryUtil.h
         ClassicCiphers/HillCipher.h
         ClassicCiphers/HillCipher.cpp
         ClassicCiphers/PermutationCipher.h
@@ -18,8 +19,10 @@ set(SOURCE_FILES
         ClassicCiphers/Base/Cipher.cpp
         ClassicCiphers/AffineCipher.h
         ClassicCiphers/AffineCipher.cpp
-        SymetricCiphers/FreidmanTester.cpp
-        SymetricCiphers/FreidmanTester.h
+        SymetricCiphers/Vigenere/FreidmanTester.cpp
+        SymetricCiphers/Vigenere/FreidmanTester.h
+        SymetricCiphers/OperationMode/ECBOperationMode.cpp
+        SymetricCiphers/OperationMode/ECBOperationMode.h
         main.cpp)
 
 

@@ -1,5 +1,5 @@
 #include <iostream>
-#include <SymetricCiphers/FreidmanTester.h>
+#include <SymetricCiphers/Vigenere/FreidmanTester.h>
 #include "ClassicCiphers/AffineCipher.h"
 #include "ClassicCiphers/SubstitutionCipher.h"
 #include "ClassicCiphers/PolybeCipher.h"
