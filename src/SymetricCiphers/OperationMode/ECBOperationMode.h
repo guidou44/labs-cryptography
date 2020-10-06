@@ -7,12 +7,14 @@
 
 
 #include <string>
+#include "OperationModeBase.h"
 
-class ECBOperationMode {
+class ECBOperationMode : protected OperationModeBase {
 
 public:
-    std::string encrypt(const std::string& plainText, const std::string& key);
-    std::string decrypt(const std::string& cipherText, const std::string& key);
+    std::string encryptDecrypt(const std::string& targetText, const std::string& key);
+private:
+    static std::string encryptDecryptInternal(const std::string& text, const std::string& key);
 };
 
 

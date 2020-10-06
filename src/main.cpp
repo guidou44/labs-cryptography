@@ -1,18 +1,39 @@
 #include <iostream>
 #include <SymetricCiphers/Vigenere/FreidmanTester.h>
+#include <SymetricCiphers/OperationMode/ECBOperationMode.h>
+#include <SymetricCiphers/OperationMode/CBCOperationMode.h>
 #include "ClassicCiphers/AffineCipher.h"
 #include "ClassicCiphers/SubstitutionCipher.h"
 #include "ClassicCiphers/PolybeCipher.h"
 #include "ClassicCiphers/PermutationCipher.h"
 #include "ClassicCiphers/HillCipher.h"
 
+void runVigenereTests();
+void runEcbModeTest();
+void runClassicCiphers();
+void runCbcModeTest();
+
 using namespace std;
 
 int main() {
 
     //runClassicCiphers();
+    //runVigenereTests();
 
-    std::string encryptedVigenere = "JEXCGQDUILIXXDIMXVNGXIBVPGLSMIUVVLZHPCQINXTOGFPWXMIFTXDVRWMCEKMIIAWZGBDWIYIJ"
+    try {
+        runEcbModeTest();
+        runCbcModeTest();
+    } catch (logic_error& ex) {
+        cout << ex.what() << endl;
+    }
+
+
+
+    return 0;
+}
+
+void runVigenereTests() {
+    string encryptedVigenere = "JEXCGQDUILIXXDIMXVNGXIBVPGLSMIUVVLZHPCQINXTOGFPWXMIFTXDVRWMCEKMIIAWZGBDWIYIJ"
                                     "MSRVWMJJRFRPZVIZRAJVSZRUMCXEJIMQPKMIIGPCPYYTARMHOIMKMHOSJEMHOIACMADFAVXYSX"
                                     "RRPFZHRZTBZVIVBNYIRICJOMDEMMOLTIIPZVHVMHJXWVVQJVSJQIQMCXJLJQIYIOIMCKIFGMVZFFZ"
                                     "GXGLYMXTOXVVGZKSJGEXEXYSXPTMJCIGZWUKEXISZVPVFVCOLBJXBVXRIIUOIIYIYIGGPTNDSCRRX"
@@ -41,7 +62,6 @@ int main() {
     freidmanTester.printLetterFrequenciesEnglish();
     FreidmanTester::printAllStringBlockForSize(encryptedVigenere, 6);
     freidmanTester.printMaxLetterFrequencyInAllStringBlockFor(encryptedVigenere, 6);
-    return 0;
 }
 
 void runClassicCiphers() {
@@ -81,4 +101,36 @@ void runClassicCiphers() {
     std::cout << "--------- HILL CIPHER -----------" << std::endl;
     std::cout << encrypted5 << " decrypted to : "<< hillCipher.decrypt(encrypted5) <<std::endl;
     std::cout << clear5 << " encrypted to : "<< hillCipher.encrypt(clear5) <<std::endl;
+}
+
+void runEcbModeTest() {
+    ECBOperationMode ecb;
+    string word = "10111110011001";
+    string key = "1110101";
+    cout<<"encrypting : " << word << " with key :" << key << endl;
+    cout<<"result : " << ecb.encryptDecrypt(word, key) <<  endl;
+
+    word = "11011111000001";
+    key = "0110101";
+    cout<<"decrypting : " << word << " with key :" << key << endl;
+    cout<<"result : " << ecb.encryptDecrypt(word, key) <<  endl;
+
+}
+
+void runCbcModeTest() {
+    CBCOperationMode cbc;
+    string iv = CBCOperationMode::generateInitVector();
+    string word = "11100011100111";
+    string key = "1011111";
+    iv = "1100111";
+
+    cout<<"encrypting : " << word << " with key :" << key << "with IV : " << iv <<endl;
+    cout<<"result : " << cbc.encrypt(word, key, iv) <<  endl;
+
+    word = "110010100110011010101";
+    key = "1001111";
+    iv ="";
+
+    cout<<"decrypting : " << word << " with key :" << key << "with IV : " << iv <<endl;
+    cout<<"result : " << cbc.decrypt(word, key) <<  endl;
 }
