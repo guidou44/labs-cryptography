@@ -8,7 +8,7 @@
 using namespace std;
 
 std::string CBCOperationMode::encrypt(const std::string &text, const std::string &key, const std::string &iv) {
-    vector<string> all7bitWords = separateIn7charsWords(text);
+    vector<string> all7bitWords = separateInCharsWordsOfSize(text, BLOCK_SIZE);
     vector<bool> keyBinary = BinaryUtil::getBinaryValues(key);
     vector<bool> ivBinary = BinaryUtil::getBinaryValues(iv);
     string cipherText = iv;
@@ -32,7 +32,7 @@ std::string CBCOperationMode::encrypt(const std::string &text, const std::string
 }
 
 std::string CBCOperationMode::decrypt(const std::string &text, const std::string &key) {
-    vector<string> all7bitWords = separateIn7charsWords(text);
+    vector<string> all7bitWords = separateInCharsWordsOfSize(text, BLOCK_SIZE);
     if (all7bitWords.size() == 1)
         throw logic_error("cannot decrypt word with only 1 7bits block with CBC");
     const string iv = all7bitWords.at(0);
@@ -60,8 +60,3 @@ std::string CBCOperationMode::decrypt(const std::string &text, const std::string
     return plainText;
 }
 
-std::string CBCOperationMode::generateInitVector() {
-    int iv = rand() % 128;
-    std::string binary = std::bitset<7>(iv).to_string();
-    return binary;
-}

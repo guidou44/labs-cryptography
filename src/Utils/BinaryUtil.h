@@ -15,6 +15,7 @@ public:
     static std::vector<bool> getBinaryValues(const std::string& binaryText);
     static std::string getCharValues(const std::vector<bool>& boolValues);
     static std::vector<bool> XOR(const std::vector<bool>& first, const std::vector<bool>& second);
+    static void shiftLeft(std::vector<bool>& target, int numberOfBits);
 
 private:
     static bool charIsBit(const char& c);

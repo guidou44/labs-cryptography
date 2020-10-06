@@ -69,6 +69,10 @@ char BinaryUtil::getCharRepresentation(bool bit) {
     return (bit) ? '1' : '0';
 }
 
+void BinaryUtil::shiftLeft(std::vector<bool> &target, int numberOfBits) {
+    target.erase(target.begin(), target.begin() + numberOfBits);
+}
+
 
 //endregion
 

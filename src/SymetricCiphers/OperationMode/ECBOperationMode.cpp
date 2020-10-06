@@ -8,7 +8,7 @@
 using  namespace std;
 
 std::string ECBOperationMode::encryptDecrypt(const std::string &targetText, const std::string &key) {
-    vector<string> all7bitWords = separateIn7charsWords(targetText);
+    vector<string> all7bitWords = separateInCharsWordsOfSize(targetText, BLOCK_SIZE);
     string text;
 
     for (const auto& word : all7bitWords) {

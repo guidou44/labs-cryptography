@@ -12,7 +12,11 @@
 class OperationModeBase {
 
 protected:
-    std::vector<std::string> separateIn7charsWords(const std::string& text);
+    static const int BLOCK_SIZE = 7;
+    static std::vector<std::string> separateInCharsWordsOfSize(const std::string& text, int size);
+public:
+    static std::string generateInitVector();
+    static int getRandomRParameter(int max);
 };
 
 

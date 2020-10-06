@@ -28,6 +28,8 @@ set(SOURCE_FILES
         SymetricCiphers/OperationMode/OperationModeBase.h
         SymetricCiphers/OperationMode/CBCOperationMode.cpp
         SymetricCiphers/OperationMode/CBCOperationMode.h
+        SymetricCiphers/OperationMode/CFBOperationMode.cpp
+        SymetricCiphers/OperationMode/CFBOperationMode.h
         main.cpp)
 
 

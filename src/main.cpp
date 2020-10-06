@@ -2,6 +2,7 @@
 #include <SymetricCiphers/Vigenere/FreidmanTester.h>
 #include <SymetricCiphers/OperationMode/ECBOperationMode.h>
 #include <SymetricCiphers/OperationMode/CBCOperationMode.h>
+#include <SymetricCiphers/OperationMode/CFBOperationMode.h>
 #include "ClassicCiphers/AffineCipher.h"
 #include "ClassicCiphers/SubstitutionCipher.h"
 #include "ClassicCiphers/PolybeCipher.h"
@@ -12,6 +13,7 @@ void runVigenereTests();
 void runEcbModeTest();
 void runClassicCiphers();
 void runCbcModeTest();
+void runCfbModeTest();
 
 using namespace std;
 
@@ -21,8 +23,9 @@ int main() {
     //runVigenereTests();
 
     try {
-        runEcbModeTest();
-        runCbcModeTest();
+        //runEcbModeTest();
+        //runCbcModeTest();
+        runCfbModeTest();
     } catch (logic_error& ex) {
         cout << ex.what() << endl;
     }
@@ -119,7 +122,7 @@ void runEcbModeTest() {
 
 void runCbcModeTest() {
     CBCOperationMode cbc;
-    string iv = CBCOperationMode::generateInitVector();
+    string iv = OperationModeBase::generateInitVector();
     string word = "11100011100111";
     string key = "1011111";
     iv = "1100111";
@@ -133,4 +136,25 @@ void runCbcModeTest() {
 
     cout<<"decrypting : " << word << " with key :" << key << "with IV : " << iv <<endl;
     cout<<"result : " << cbc.decrypt(word, key) <<  endl;
+}
+
+void runCfbModeTest() {
+    CFBOperationMode cfb;
+    string iv = OperationModeBase::generateInitVector();
+    int r = OperationModeBase::getRandomRParameter(7);
+    cout << "generated r : " << r << endl;
+    string word = "10101100010111";
+    string key = "1001111";
+    iv = "1110001";
+    r = 5;
+
+    cout<<"encrypting : " << word << " with key :" << key << "with IV : " << iv <<endl;
+    cout<<"result : " << CFBOperationMode::encrypt(word, key, iv, r) <<  endl;
+
+    word = "111000111010011000111";
+    key = "1001111";
+    iv ="";
+
+    cout<<"decrypting : " << word << " with key :" << key << "with IV : " << iv <<endl;
+    cout<<"result : " << CFBOperationMode::decrypt(word, key, r) <<  endl;
 }
