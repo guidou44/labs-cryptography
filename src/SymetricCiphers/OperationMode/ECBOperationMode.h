@@ -12,9 +12,9 @@
 class ECBOperationMode : protected OperationModeBase {
 
 public:
-    static std::string encryptDecrypt(const std::string& targetText, const std::string& key);
+    std::string encryptDecrypt(const std::string& targetText, const std::string& key);
 private:
-    static std::string encryptDecryptInternal(const std::string& text, const std::string& key);
+    std::string encryptDecryptInternal(const std::string& text, const std::string& key);
 };
 
 

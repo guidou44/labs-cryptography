@@ -35,11 +35,23 @@ std::string CFBOperationMode::encryptDecryptInternal(const std::string &text, co
         vector<bool> blockResult = BinaryUtil::XOR(outputMRB, wordBinary);
         outputText += BinaryUtil::getCharValues(blockResult);
         BinaryUtil::shiftLeft(encryptionInput, allRbitWord.size());
-        if (isEncrypting)
-            encryptionInput.insert(encryptionInput.end(), blockResult.begin(), blockResult.end());
-        else
-            encryptionInput.insert(encryptionInput.end(), wordBinary.begin(), wordBinary.end());
+        prepareNextEncryptionInput(encryptionInput, blockResult, firstEncryptionOutput, wordBinary, isEncrypting);
     }
 
     return outputText;
+}
+
+void CFBOperationMode::appendBitsToNextInput(std::vector<bool> &nextEncryptionInput,
+                                             const std::vector<bool> &bitsToAppend) {
+    nextEncryptionInput.insert(nextEncryptionInput.end(), bitsToAppend.begin(), bitsToAppend.end());
+}
+
+void CFBOperationMode::prepareNextEncryptionInput(std::vector<bool> &nextEncryptionInput,
+                                                  const std::vector<bool> &blockResult,
+                                                  const std::vector<bool> &firstEncryptionResult,
+                                                  const std::vector<bool> &wordBinary, bool isEncrypting) {
+    if (isEncrypting)
+        appendBitsToNextInput(nextEncryptionInput, blockResult);
+    else
+        appendBitsToNextInput(nextEncryptionInput, wordBinary);
 }

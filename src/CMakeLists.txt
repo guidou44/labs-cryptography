@@ -30,6 +30,10 @@ set(SOURCE_FILES
         SymetricCiphers/OperationMode/CBCOperationMode.h
         SymetricCiphers/OperationMode/CFBOperationMode.cpp
         SymetricCiphers/OperationMode/CFBOperationMode.h
+        SymetricCiphers/OperationMode/OFBOperationMode.cpp
+        SymetricCiphers/OperationMode/OFBOperationMode.h
+        SymetricCiphers/OperationMode/CTROperationMode.cpp
+        SymetricCiphers/OperationMode/CTROperationMode.h
         main.cpp)
 
 

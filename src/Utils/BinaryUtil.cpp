@@ -48,6 +48,33 @@ std::vector<bool> BinaryUtil::XOR(const std::vector<bool> &first, const std::vec
     return result;
 }
 
+void BinaryUtil::shiftLeft(std::vector<bool> &target, int numberOfBits) {
+    target.erase(target.begin(), target.begin() + numberOfBits);
+}
+
+void BinaryUtil::incrementInModuloN(std::vector<bool> &target) {
+
+    unsigned int lastTargetIndex = target.size() - 1;
+    for (unsigned int i = lastTargetIndex; i >= 0; i--) {
+        if (!target[i] && i == lastTargetIndex) {
+            target[i] = true;
+            return;//LSB est à 0, on incrémente et on retourne.
+        }
+
+        if (!target[i]) {
+            target[i] = true;
+            target[i+1] = false;
+            return; //Premier bit à 0 rencontré (autre que le bit moins significatif) est mis à 1, et son bit de droite est remis à 0.
+        }
+    }
+
+    //Si on se rend ici, tout les bits sont des 1, donc on remet tout à 0 pour rester dans modulo n où n est le nombre de bit.
+    for  (auto && i : target) {
+        i = false;
+    }
+}
+
+
 //region private methods
 
 bool BinaryUtil::charIsBit(const char &c) {
@@ -68,11 +95,6 @@ bool BinaryUtil::getBinaryValue(const char &c) {
 char BinaryUtil::getCharRepresentation(bool bit) {
     return (bit) ? '1' : '0';
 }
-
-void BinaryUtil::shiftLeft(std::vector<bool> &target, int numberOfBits) {
-    target.erase(target.begin(), target.begin() + numberOfBits);
-}
-
 
 //endregion
 

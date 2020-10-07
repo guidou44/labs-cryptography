@@ -3,6 +3,9 @@
 #include <SymetricCiphers/OperationMode/ECBOperationMode.h>
 #include <SymetricCiphers/OperationMode/CBCOperationMode.h>
 #include <SymetricCiphers/OperationMode/CFBOperationMode.h>
+#include <SymetricCiphers/OperationMode/OFBOperationMode.h>
+#include <SymetricCiphers/OperationMode/CTROperationMode.h>
+#include <Utils/BinaryUtil.h>
 #include "ClassicCiphers/AffineCipher.h"
 #include "ClassicCiphers/SubstitutionCipher.h"
 #include "ClassicCiphers/PolybeCipher.h"
@@ -14,6 +17,8 @@ void runEcbModeTest();
 void runClassicCiphers();
 void runCbcModeTest();
 void runCfbModeTest();
+void runOfbModeTest();
+void runCtrModeTest();
 
 using namespace std;
 
@@ -25,7 +30,9 @@ int main() {
     try {
         //runEcbModeTest();
         //runCbcModeTest();
-        runCfbModeTest();
+        //runCfbModeTest();
+        //runOfbModeTest();
+        runCtrModeTest();
     } catch (logic_error& ex) {
         cout << ex.what() << endl;
     }
@@ -149,12 +156,52 @@ void runCfbModeTest() {
     r = 5;
 
     cout<<"encrypting : " << word << " with key :" << key << "with IV : " << iv <<endl;
-    cout<<"result : " << CFBOperationMode::encrypt(word, key, iv, r) <<  endl;
+    cout<<"result : " << cfb.encrypt(word, key, iv, r) <<  endl;
 
     word = "111000111010011000111";
     key = "1001111";
     iv ="";
 
     cout<<"decrypting : " << word << " with key :" << key << "with IV : " << iv <<endl;
-    cout<<"result : " << CFBOperationMode::decrypt(word, key, r) <<  endl;
+    cout<<"result : " << cfb.decrypt(word, key, r) <<  endl;
+}
+
+void runOfbModeTest() {
+    OFBOperationMode ofb;
+    string iv = OperationModeBase::generateInitVector();
+    int r = OperationModeBase::getRandomRParameter(7);
+    cout << "generated r : " << r << endl;
+    string word = "11100000100111";
+    string key = "1001111";
+    iv = "1110001";
+    r = 5;
+
+    cout<<"encrypting : " << word << " with key :" << key << "with IV : " << iv <<endl;
+    cout<<"result : " << ofb.encrypt(word, key, iv, r) <<  endl;
+
+    word = "111000110011111100000";
+    key = "1001111";
+    iv ="";
+
+    cout<<"decrypting : " << word << " with key :" << key << "with IV : " << iv <<endl;
+    cout<<"result : " << ofb.decrypt(word, key, r) <<  endl;
+}
+
+void runCtrModeTest() {
+
+    CTROperationMode ctr;
+    string iv = OperationModeBase::generateInitVector();
+    string word = "11100000100111";
+    string key = "1001111";
+    iv = "1110001";
+
+    cout<<"encrypting : " << word << " with key :" << key << " with IV : " << iv <<endl;
+    cout<<"result : " << ctr.encrypt(word, key, iv) <<  endl;
+
+    word = "111000110011100011010";
+    key = "1001111";
+    iv ="";
+
+    cout<<"decrypting : " << word << " with key :" << key << " with IV : " << iv <<endl;
+    cout<<"result : " << ctr.decrypt(word, key) <<  endl;
 }
